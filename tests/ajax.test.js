@@ -9,7 +9,9 @@ import {
     it,
 } from "https://deno.land/std@0.136.0/testing/bdd.ts";
 
-import { ajax, ajaxFn } from '../mod.js'
+import { ajax } from '../mod.js'
+// import { ajax } from 'https://raw.githubusercontent.com/kodema5/ajax.js/main/mod.js'
+
 ajax.base_href = 'https://httpbin.org'
 ajax.headers['Authorization'] = 'hello world'
 
