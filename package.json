@@ -1,0 +1,6 @@
+{
+    "name": "ajax",
+    "description": "wraps fetch as a function",
+    "verison": "0.0.1",
+    "main": "src/index.js"
+}
