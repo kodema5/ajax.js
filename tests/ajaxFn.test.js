@@ -1,16 +1,9 @@
-// deno test --allow-net --watch
-//
 import {
-    assert,
     assertEquals,
-} from "https://deno.land/std@0.136.0/testing/asserts.ts";
-import {
     describe,
     it,
-} from "https://deno.land/std@0.136.0/testing/bdd.ts";
-
-import { ajaxFn } from '../mod.js'
-// import { ajaxFn } from 'https://raw.githubusercontent.com/kodema5/ajax.js/main/mod.js'
+    ajaxFn,
+} from './deps.js'
 
 describe('ajaxFn wraps ajax call as a function', () => {
 

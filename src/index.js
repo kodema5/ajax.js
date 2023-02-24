@@ -21,6 +21,14 @@ let processResponse = (res, type) => {
     throw new Error('unknown response type')
 }
 
+export let ajaxDefaults = {
+    baseHref:'',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+}
+
+
 export function ajax ({
     url,
     data,
@@ -30,7 +38,7 @@ export function ajax ({
     input = (a) => a,
     output = (a) => a,
 
-    headers = {}, // additional headers
+    headers = ajaxDefaults.headers, // additional headers
     body, // for FormData, URLSearchParams, string, etc
 
     method = 'POST',
@@ -43,8 +51,8 @@ export function ajax ({
 
     if (!url) throw new Error('url required')
 
-    url = url.indexOf('http') < 0 && ajax.base_href
-        ? ajax.base_href + url
+    url = url.indexOf('http') < 0 && ajaxDefaults.baseHref
+        ? ajaxDefaults.baseHref + url
         : url
 
     data = input(data)
@@ -52,7 +60,6 @@ export function ajax ({
     let opt = {
         method,
         headers: {
-            ...(ajax.headers || {}),
             ...(headers)
         }
     }
@@ -101,11 +108,6 @@ export function ajax ({
     p.abort = () => Abort.abort()
 
     return p
-}
-
-ajax.base_href = ''
-ajax.headers = {
-    'Content-Type': 'application/json'
 }
 
 // wraps ajax-call as a function
