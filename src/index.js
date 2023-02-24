@@ -23,36 +23,39 @@ let processResponse = (res, type) => {
 
 export let ajaxDefaults = {
     baseHref:'',
+    timeout: 0,
+
+    method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },
+
+    requestType: 'json', // json, text, any
+    responseType: 'json', // arrayBuffer, blob, formData, json, text,
 }
 
 
 export function ajax ({
     url,
     data,
+    body, // for FormData, URLSearchParams, string, etc
 
-    // transformer
-    //
+    // transformer/validator
     input = (a) => a,
     output = (a) => a,
 
-    headers = ajaxDefaults.headers, // additional headers
-    body, // for FormData, URLSearchParams, string, etc
-
-    method = 'POST',
-    timeout = 0,
-
-    requestType = 'json', // json, text, any
-    responseType = 'json', // arrayBuffer, blob, formData, json, text,
-
+    baseHref = ajaxDefaults.baseHref,
+    method = ajaxDefaults.method,
+    headers = ajaxDefaults.headers,
+    timeout = ajaxDefaults.timeout,
+    requestType = ajaxDefaults.requestType,
+    responseType = ajaxDefaults.responseType,
 } = {}) {
 
     if (!url) throw new Error('url required')
 
-    url = url.indexOf('http') < 0 && ajaxDefaults.baseHref
-        ? ajaxDefaults.baseHref + url
+    url = url.indexOf('http') < 0 && baseHref
+        ? baseHref + url
         : url
 
     data = input(data)

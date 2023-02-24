@@ -1,5 +1,3 @@
-// deno test --allow-net --watch
-//
 import {
     assert,
     assertEquals,
